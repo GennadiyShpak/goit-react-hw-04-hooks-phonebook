@@ -2,13 +2,7 @@ import { useState } from 'react';
 
 import s from './Form.module.css';
 
-const INITIAL_STATE = {
-  name: '',
-  id: '',
-  number: '',
-};
-
-function Form() {
+function Form({ onSubmit }) {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -31,12 +25,13 @@ function Form() {
     e.preventDefault();
     !name || !number
       ? alert(`Some field are empty`)
-      : this.props.onSubmit({ name, number });
+      : onSubmit({ name, number });
     reset();
   }
 
   function reset() {
-    this.setState({ ...INITIAL_STATE });
+    setName('');
+    setNumber('');
   }
 
   return (
